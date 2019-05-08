@@ -225,61 +225,9 @@ class Home extends Component {
         </nav>
         <div className="container">
           {/* For Alert box*/} <div id="oc-alert-container"> </div>
-          <div className="mt-5">
-            <h5>AWS S3 Photos folder contains:</h5>
-            <table className="table ">
-              <thead className="table-head-design ">
-                <tr>
-                  <th
-                    scope="col"
-                    className="text-white rounded-left border-cancel"
-                  >
-                    Image Location
-                  </th>
-                  <th scope="col" className="text-white border-cancel">
-                    Image Preview
-                  </th>
-                  <th
-                    scope="col"
-                    className="text-white rounded-right border-cancel"
-                  >
-                    Delete
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.currentItems.map((item, index) => (
-                  <tr key={index}>
-                    <td className="border-cancel row-border">
-                      <div>{`https://s3.amazonaws.com/agapiranha/${
-                        item.Key
-                      }`}</div>
-                    </td>
-                    <td className="border-cancel row-border">
-                      <img
-                        alt="project"
-                        width="100px"
-                        src={`https://s3.amazonaws.com/agapiranha/${item.Key}`}
-                      />
-                    </td>
-                    <td className="border-cancel row-border">
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => {
-                          this.deleteSpecific(item.Key);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          {/* Single File Upload*/}
+          {/* Upload Image Box Start */}
           <div
-            className="card border-light mb-5 mt-5"
+            className="card border-light mb-3 mt-5"
             style={{
               boxShadow: "0 5px 10px 2px rgba(195,192,192,.5)"
             }}
@@ -287,91 +235,20 @@ class Home extends Component {
             <div className="card-header upload single-head-design">
               <h3
                 style={{
-                  color: "#292929",
+                  color: "#fff",
                   marginLeft: "12px"
                 }}
               >
-                Single Image Upload
+                Upload Images
               </h3>
               <i className="fas fa-cloud-upload-alt float-right fa-3x text-success" />
               <p
-                className="text-muted"
+                className="text-success"
                 style={{
                   marginLeft: "12px"
                 }}
               >
-                Upload Size: 250 px x 250 px(Max 2 MB)
-              </p>
-            </div>
-            <div className="card-body">
-              <p className="card-text">
-                Please upload an image for your profile
-              </p>
-              <input type="file" onChange={this.singleFileChangedHandler} />
-              <p className="mt-3">
-                {this.state.fileLocation ? (
-                  <div>
-                    <span className="font-weight-bold">
-                      Your file location is:
-                    </span>
-                    <br />
-                    <span className="font-italic">
-                      {this.state.fileLocation}
-                    </span>
-                  </div>
-                ) : null}
-
-                <br />
-
-                <br />
-                {this.state.fileLocation ? (
-                  <div>
-                    <span className="mt-3 mb-2">
-                      Preview of the uploaded image
-                    </span>
-                    <br />
-                    <img
-                      src={this.state.fileLocation}
-                      height="200"
-                      alt="preview of your uploaded file"
-                    />
-                  </div>
-                ) : null}
-              </p>
-              <div className="mt-5">
-                <button
-                  className="btn btn-success"
-                  onClick={this.singleFileUploadHandler}
-                >
-                  Upload!
-                </button>
-              </div>
-            </div>
-          </div>
-          {/* Multiple File Upload */}
-          <div
-            className="card border-light mb-3"
-            style={{
-              boxShadow: "0 5px 10px 2px rgba(195,192,192,.5)"
-            }}
-          >
-            <div className="card-header upload single-head-design">
-              <h3
-                style={{
-                  color: "#292929",
-                  marginLeft: "12px"
-                }}
-              >
-                Upload Muliple Images
-              </h3>
-              <i className="fas fa-cloud-upload-alt float-right fa-3x text-success" />
-              <p
-                className="text-muted"
-                style={{
-                  marginLeft: "12px"
-                }}
-              >
-                Upload Size: 400 px x 400 px(Max 2 MB)
+                Upload Size: Max 2 MB
               </p>
             </div>
             <div className="card-body">
@@ -404,51 +281,67 @@ class Home extends Component {
               </div>
             </div>
           </div>
-          {/* Delete Single File  */}
-          {/* Deprecated as of now */}
-          {/* <div
-            className="card border-light mb-5 mt-5"
-            style={{
-              boxShadow: "0 5px 10px 2px rgba(195,192,192,.5)"
-            }}
-          >
-            <div className="card-header delete delete-head-design">
-              <h3
-                style={{
-                  color: "#292929",
-                  marginLeft: "12px"
-                }}
-              >
-                Delete Single File
-              </h3>
-              <i className="fas fa-trash-alt float-right fa-3x text-danger" />
-            </div>
-            <div className="card-body">
-              <form method="delete">
-                <input
-                  size="35"
-                  type="text"
-                  onChange={this.inputDeleteHandler}
-                  name="delete"
-                />
-              </form>
-
-              <p className="mt-3">
-                <span className="font-weight-bold">
-                  {this.state.deleted
-                    ? `Successfully deleted ${this.state.deleteFile}!`
-                    : null}
-                </span>
-                <br />
-              </p>
-              <div className="mt-5">
-                <button className="btn btn-danger" onClick={this.deleteFiles}>
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div> */}
-          {/* Delete End */}
+          {/* Upload Image Box End */}
+          {/* Current Folder Container Start */}
+          <div className="mt-5 mb-5">
+            <h5>AWS S3 Photos folder contains:</h5>
+            <table className="table ">
+              <thead className="table-head-design ">
+                <tr>
+                  <th
+                    scope="col"
+                    className="text-white rounded-left border-cancel"
+                  >
+                    Image Location
+                  </th>
+                  <th scope="col" className="text-white border-cancel">
+                    Image Preview
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-white rounded-right border-cancel"
+                  >
+                    Delete
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.currentItems.map((item, index) => (
+                  <tr key={index}>
+                    <td className="border-cancel row-border">
+                      <a
+                        href={`https://s3.amazonaws.com/agapiranha/${item.Key}`}
+                      >{`https://s3.amazonaws.com/agapiranha/${item.Key}`}</a>
+                    </td>
+                    <td className="border-cancel row-border">
+                      <a
+                        href={`https://s3.amazonaws.com/agapiranha/${item.Key}`}
+                      >
+                        <img
+                          alt="project"
+                          width="100px"
+                          src={`https://s3.amazonaws.com/agapiranha/${
+                            item.Key
+                          }`}
+                        />
+                      </a>
+                    </td>
+                    <td className="border-cancel row-border">
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          this.deleteSpecific(item.Key);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/* Current Folder Container End */}
         </div>
       </div>
     );
