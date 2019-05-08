@@ -10,4 +10,4 @@ Install nodemon and create-react-app globally using below command:
 
 ### App Preview
 
-![alt](https://agapiranha.s3.amazonaws.com/photos/AGA_fileUploader-1557339726708.png)
+![alt](https://s3.amazonaws.com/agapiranha/photos/AGA_fileUploader-1557339726708.png)

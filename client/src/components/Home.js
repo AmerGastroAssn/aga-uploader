@@ -213,18 +213,14 @@ class Home extends Component {
     return (
       <div>
         <nav className="navbar navbar-light mt-4">
-          <span className="navbar-brand mb-0 h1 main-logo ml-5">
-            <span className="font-weight-bold">AGA </span>File Uploader
-          </span>
-          <span className="mr-3">
-            for
+          <span className="navbar-brand mb-0 h1 ml-5">
             <img
               src="/aga-logo.png"
-              width="50"
+              width="100"
               style={{ marginRight: "5px", marginLeft: "5px" }}
               alt="logo"
             />
-            use
+            <span className="primary-italic">File Uploader</span>
           </span>
         </nav>
         <div className="container">
