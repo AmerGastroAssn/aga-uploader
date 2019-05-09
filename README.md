@@ -1,12 +1,14 @@
 # AGA File Uploader App
 
-## Installation Instructions
+### Tech Used:
 
-Install nodemon and create-react-app globally using below command:
+- React
+- Node.js / Express
+- AWS S3 SDK
 
-`$ npm i -D nodemon`
+### About
 
-`npm i -g create-react-app`
+This app connects to our AWS S3 Database server folder directly making it easier for us to upload and delete specific files.
 
 ### App Preview
 
