@@ -222,6 +222,83 @@ class Home extends Component {
             />
             <span className="primary-italic">File Uploader</span>
           </span>
+
+          {/* About Modal Start */}
+          <div className="float-right mr-4">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModalLong"
+            >
+              About the App
+            </button>
+
+            <div
+              class="modal fade"
+              id="exampleModalLong"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLongTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                      About
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    This app connects to our AWS S3 Database server folder
+                    directly making it easier for us to upload and delete
+                    specific files.
+                    <br /> <br />
+                    Main function of the app:
+                    <ul>
+                      <li>Upload</li>
+                      <li>Delete</li>
+                    </ul>
+                    <br />
+                    The Upload Board contains a file uploader button. You can
+                    choose up to 4 files at a time and max size for a file is
+                    2MB. After uploading file/files the Upload Board will reveal
+                    it's location right away for ease of use.
+                    <br />
+                    <br />
+                    The Table at the bottom visually shows all the files that
+                    are in our S3 bucket along with its file location for easy
+                    copy/paste use and image preview. The table also consists of
+                    the delete button so if a file is no longer needed and needs
+                    to be deleted we can simply click on the delete button to
+                    remove the specific file.
+                    <br />
+                    <br />
+                    Tutorial link: coming soon
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* About Modal End */}
         </nav>
         <div className="container">
           {/* For Alert box*/} <div id="oc-alert-container"> </div>
@@ -319,7 +396,7 @@ class Home extends Component {
                       >
                         <img
                           alt="project"
-                          width="100px"
+                          width="100"
                           src={`https://s3.amazonaws.com/agapiranha/${
                             item.Key
                           }`}
