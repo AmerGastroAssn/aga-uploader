@@ -425,7 +425,7 @@ class Home extends Component {
 
               <div className="mt-3">
                 <span className="font-weight-bold mb-3">
-                  Your file locations are:
+                  Your file location:
                 </span>
                 <span className="font-italic">
                   {this.state.multifileLocation.map((location, id) => (
