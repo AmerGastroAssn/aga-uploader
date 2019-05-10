@@ -30,6 +30,7 @@ const profileImgUpload = multer({
     s3: s3,
     bucket: "agapiranha/photos",
     acl: "public-read",
+
     key: function(req, file, cb) {
       cb(
         null,

@@ -3,6 +3,9 @@ import axios from "axios";
 import $ from "jquery";
 import "./Home.css";
 
+import ReactTable from "react-table";
+import "react-table/react-table.css";
+
 // Sweet Alert
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -95,7 +98,7 @@ class Home extends Component {
           headers: {
             accept: "application/json",
             "Accept-Language": "en-US,en;q=0.8",
-            "Content-Type": `multipart/form-data; boundary=${data._boundary}`
+            "Content-Type": `image/png; boundary=${data._boundary}`
           }
         })
         .then(response => {
@@ -209,7 +212,75 @@ class Home extends Component {
   }
   render() {
     console.log(this.state);
+    const columns = [
+      {
+        Header: "Image Location",
+        headerClassName: "my-favorites-column-header-group",
+        style: {
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "left"
+        },
+        Cell: row => {
+          console.log("ROW", row);
+          return (
+            <div>
+              <a
+                href={`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}
+              >{`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}</a>
+            </div>
+          );
+        }
+      },
 
+      {
+        Header: "Image Preview",
+        headerClassName: "my-favorites-column-header-group",
+        style: {
+          textAlign: "center"
+        },
+        width: 150,
+        maxWidth: 150,
+        minWidth: 150,
+        Cell: row => {
+          return (
+            <a href={`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}>
+              <img
+                width="100"
+                src={`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}
+              />
+            </a>
+          );
+        },
+        id: "status"
+      },
+      {
+        Header: "Delete",
+        headerClassName: "my-favorites-column-header-group",
+        style: {
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        },
+        Cell: row => {
+          return (
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                this.deleteSpecific(row.original.Key);
+              }}
+            >
+              Delete
+            </button>
+          );
+        },
+        width: 100,
+        maxWidth: 100,
+        minWidth: 100
+      }
+    ];
     return (
       <div>
         <nav className="navbar navbar-light mt-4">
@@ -227,7 +298,7 @@ class Home extends Component {
           <div className="float-right mr-4">
             <button
               type="button"
-              class="btn btn-primary"
+              className="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModalLong"
             >
@@ -235,29 +306,29 @@ class Home extends Component {
             </button>
 
             <div
-              class="modal fade"
+              className="modal fade"
               id="exampleModalLong"
-              tabindex="-1"
+              tabIndex="-1"
               role="dialog"
               aria-labelledby="exampleModalLongTitle"
               aria-hidden="true"
             >
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLongTitle">
                       About
                     </h5>
                     <button
                       type="button"
-                      class="close"
+                      className="close"
                       data-dismiss="modal"
                       aria-label="Close"
                     >
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                     This app connects to our AWS S3 Database server folder
                     directly making it easier for us to upload and delete
                     specific files.
@@ -284,10 +355,10 @@ class Home extends Component {
                     <br />
                     Tutorial link: coming soon
                   </div>
-                  <div class="modal-footer">
+                  <div className="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      className="btn btn-secondary"
                       data-dismiss="modal"
                     >
                       Close
@@ -360,7 +431,7 @@ class Home extends Component {
           </div>
           {/* Upload Image Box End */}
           {/* Current Folder Container Start */}
-          <div className="mt-5 mb-5">
+          {/* <div className="mt-5 mb-5">
             <h5>AWS S3 Photos folder contains:</h5>
             <table className="table ">
               <thead className="table-head-design ">
@@ -388,11 +459,13 @@ class Home extends Component {
                     <td className="border-cancel row-border">
                       <a
                         href={`https://s3.amazonaws.com/agapiranha/${item.Key}`}
+                        target="_blank"
                       >{`https://s3.amazonaws.com/agapiranha/${item.Key}`}</a>
                     </td>
                     <td className="border-cancel row-border">
                       <a
                         href={`https://s3.amazonaws.com/agapiranha/${item.Key}`}
+                        target="_blank"
                       >
                         <img
                           alt="project"
@@ -417,8 +490,15 @@ class Home extends Component {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> */}
           {/* Current Folder Container End */}
+          {/* React Table Start */}
+          <ReactTable
+            columns={columns}
+            data={this.state.currentItems}
+            defaultPageSize={10}
+          />
+          {/* React Table End */}
         </div>
       </div>
     );
