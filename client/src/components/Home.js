@@ -351,7 +351,12 @@ class Home extends Component {
                       <li>Upload</li>
                       <li>Delete</li>
                     </ul>
-                    <br />
+                    Type of files the app works with:
+                    <ul>
+                      <li>JPG/JPEG</li>
+                      <li>PNG</li>
+                      <li>GIF</li>
+                    </ul>
                     The Upload Board contains a file uploader button. You can
                     choose up to 4 files at a time and max size for a file is
                     2MB. After uploading file/files the Upload Board will reveal
@@ -366,7 +371,13 @@ class Home extends Component {
                     remove the specific file.
                     <br />
                     <br />
-                    Tutorial link: coming soon
+                    Tutorial link:{" "}
+                    <a
+                      target="_blank"
+                      href="https://web.microsoftstream.com/video/5baebf86-68a6-4803-ae21-86dfdf0666a0?list=studio"
+                    >
+                      Stream Link Tutorial
+                    </a>
                   </div>
                   <div className="modal-footer">
                     <button
