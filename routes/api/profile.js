@@ -32,13 +32,7 @@ const profileImgUpload = multer({
     acl: "public-read",
 
     key: function(req, file, cb) {
-      cb(
-        null,
-        path.basename(file.originalname, path.extname(file.originalname)) +
-          "-" +
-          Date.now() +
-          path.extname(file.originalname)
-      );
+      cb(null, path.basename(file.originalname));
     }
   }),
   limits: {
@@ -111,13 +105,7 @@ const uploadsBusinessGallery = multer({
     bucket: "aga-file-uploads/lms",
     acl: "public-read",
     key: function(req, file, cb) {
-      cb(
-        null,
-        path.basename(file.originalname, path.extname(file.originalname)) +
-          "-" +
-          Date.now() +
-          path.extname(file.originalname)
-      );
+      cb(null, path.basename(file.originalname));
     }
   }),
   limits: {
