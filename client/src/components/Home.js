@@ -220,8 +220,10 @@ class Home extends Component {
           textAlign: "center",
           display: "flex",
           alignItems: "center",
-          justifyContent: "left"
+          justifyContent: "left",
+          fontSize: "14px"
         },
+        width: 705,
         Cell: row => {
           console.log("ROW", row);
           return (
@@ -240,14 +242,15 @@ class Home extends Component {
         style: {
           textAlign: "center"
         },
-        width: 150,
-        maxWidth: 150,
-        minWidth: 150,
+        width: 300,
+        maxWidth: 100,
+        minWidth: 200,
+
         Cell: row => {
           return (
             <a href={`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}>
               <img
-                width="100"
+                class="Image"
                 src={`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}
               />
             </a>
@@ -396,7 +399,8 @@ class Home extends Component {
                   marginLeft: "12px"
                 }}
               >
-                Upload Size: Max 2 MB
+                Upload Size: Max 2 MB <br />
+                Upload Limit: 4 Files at once can be uploaded
               </p>
             </div>
             <div className="card-body">

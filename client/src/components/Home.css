@@ -51,3 +51,7 @@
   box-shadow: rgba(195, 192, 192, 0.5) 0px 5px 10px 2px !important;
   margin: 50px 0px !important;
 }
+
+img.Image {
+  max-width: 100%;
+}
