@@ -28,7 +28,7 @@ const s3 = new aws.S3({
 const profileImgUpload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "agapiranha/photos",
+    bucket: "aga-file-uploads/lms",
     acl: "public-read",
 
     key: function(req, file, cb) {
@@ -108,7 +108,7 @@ router.post("/profile-img-upload", (req, res) => {
 const uploadsBusinessGallery = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "agapiranha/photos",
+    bucket: "aga-file-uploads/lms",
     acl: "public-read",
     key: function(req, file, cb) {
       cb(
@@ -135,7 +135,7 @@ const uploadsBusinessGallery = multer({
 
 const deleteFiles = function(req, res) {
   var item = req.body;
-  var params = { Bucket: "agapiranha", Key: item.key };
+  var params = { Bucket: "aga-file-uploads", Key: item.key };
   s3.deleteObjects(params, function(err, data) {
     if (err) {
       return res.send({ error: err });
@@ -148,9 +148,9 @@ router.delete("/multiple-file-upload", (req, res) => {
   console.log(req.query.delete);
   let fileName = req.query.delete;
   var deleteParam = {
-    Bucket: "agapiranha",
+    Bucket: "aga-file-uploads",
     Delete: {
-      Objects: [{ Key: `photos/${fileName}` }]
+      Objects: [{ Key: `lms/${fileName}` }]
     }
   };
   s3.deleteObjects(deleteParam, function(err, data) {
@@ -165,8 +165,8 @@ router.delete("/multiple-file-upload", (req, res) => {
 router.get("/list-all-items", (req, res) => {
   console.log(req.body);
   var listParam = {
-    Bucket: "agapiranha",
-    Prefix: "photos/"
+    Bucket: "aga-file-uploads",
+    Prefix: "lms/"
   };
   s3.listObjects(listParam, function(err, data) {
     if (err) {

@@ -162,7 +162,7 @@ class Home extends Component {
 
   deleteSpecific = buttonLink => {
     let link = buttonLink;
-    let cleanLink = link.slice(7, link.length);
+    let cleanLink = link.slice(4, link.length);
     // axios
     //   .delete(`api/profile/multiple-file-upload?delete=${cleanLink}`)
     //   .then(response => {
@@ -229,8 +229,12 @@ class Home extends Component {
           return (
             <div>
               <a
-                href={`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}
-              >{`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}</a>
+                href={`https://s3.amazonaws.com/aga-file-uploads/${
+                  row.original.Key
+                }`}
+              >{`https://s3.amazonaws.com/aga-file-uploads/${
+                row.original.Key
+              }`}</a>
             </div>
           );
         }
@@ -248,10 +252,16 @@ class Home extends Component {
 
         Cell: row => {
           return (
-            <a href={`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}>
+            <a
+              href={`https://s3.amazonaws.com/aga-file-uploads/${
+                row.original.Key
+              }`}
+            >
               <img
-                class="Image"
-                src={`https://s3.amazonaws.com/agapiranha/${row.original.Key}`}
+                className="Image"
+                src={`https://s3.amazonaws.com/aga-file-uploads/${
+                  row.original.Key
+                }`}
               />
             </a>
           );
@@ -462,19 +472,19 @@ class Home extends Component {
                   <tr key={index}>
                     <td className="border-cancel row-border">
                       <a
-                        href={`https://s3.amazonaws.com/agapiranha/${item.Key}`}
+                        href={`https://s3.amazonaws.com/aga-file-uploads/${item.Key}`}
                         target="_blank"
-                      >{`https://s3.amazonaws.com/agapiranha/${item.Key}`}</a>
+                      >{`https://s3.amazonaws.com/aga-file-uploads/${item.Key}`}</a>
                     </td>
                     <td className="border-cancel row-border">
                       <a
-                        href={`https://s3.amazonaws.com/agapiranha/${item.Key}`}
+                        href={`https://s3.amazonaws.com/aga-file-uploads/${item.Key}`}
                         target="_blank"
                       >
                         <img
                           alt="project"
                           width="100"
-                          src={`https://s3.amazonaws.com/agapiranha/${
+                          src={`https://s3.amazonaws.com/aga-file-uploads/${
                             item.Key
                           }`}
                         />
