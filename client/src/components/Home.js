@@ -371,7 +371,7 @@ class Home extends Component {
                     remove the specific file.
                     <br />
                     <br />
-                    Tutorial link:{" "}
+                    Tutorial link:
                     <a
                       target="_blank"
                       href="https://web.microsoftstream.com/video/5baebf86-68a6-4803-ae21-86dfdf0666a0?list=studio"
